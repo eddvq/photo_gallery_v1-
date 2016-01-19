@@ -36,10 +36,39 @@ $overlay.click(function(){
 
 
 //what is e.which???
-//why does this return all the alt attributes and img only 1?
+//why does it remove all of the images on the first search?
+//Add: If the input box is empty don't run anything //inputText.length === 0
 
 
 $("#image_name").focus().keyup(function(e){
+    // This gets the value from the search box
+    if(e.which == 13) {
+    var inputTxt = $("#image_name").val();
+        
+    //Store img in var
+    all_Images = $("img");
+        
+    //images with the the out class are stored in var
+    outImages = $(".out");
+        
+    //I want the images to be shown in each iteration
+    outImages.show();
+    outImages.each(function(){
+        
+        //gets the alt attribute in $("img")
+        all_Images.each(function(){
+        var altTexts = $(this).attr("alt"); 
+        
+        if(altTexts.indexOf(inputTxt) > -1){
+            $(this).hide();
+           };
+        })
+        });
+    };
+});
+
+
+/*$("#image_name").focus().keyup(function(e){
     if(e.which == 13) {
         var inputTxt = $("#image_name").val();
         
@@ -49,13 +78,14 @@ $("#image_name").focus().keyup(function(e){
         
     all_Images.each(function(){
         var altTexts = $(this).attr("alt"); 
-            if(inputTxt !== altTexts) {
+            console.log(altTexts);
+            if(altTexts !== inputTxt) {
             console.log("no mimes")} });        
                                                                     
 };
 });
 
-    
+    */
         
 /*        var altText = $("img").each(function(){
             var altTexts = $(this).attr("alt");
