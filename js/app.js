@@ -40,9 +40,12 @@ $overlay.click(function(){
 //Add: If the input box is empty don't run anything //inputText.length === 0
 
 
+
+
 $("#image_name").focus().keyup(function(e){
     // This gets the value from the search box
     if(e.which == 13) {
+        
     var inputTxt = $("#image_name").val();
         
     //Store img in var
@@ -59,8 +62,8 @@ $("#image_name").focus().keyup(function(e){
         all_Images.each(function(){
         var altTexts = $(this).attr("alt"); 
         
-        if(altTexts.indexOf(inputTxt) > -1){
-            $(this).hide();
+        if(altTexts.indexOf(inputTxt) === -1){
+            $(this).hide();  //turn to hide remove top
            };
         })
         });
